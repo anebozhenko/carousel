@@ -1,10 +1,12 @@
 const arrowPrev = document.querySelector('.carousel__arrow-prev'),
 			arrowNext = document.querySelector('.carousel__arrow-next'),
 			carouselRow = document.querySelector('.carousel__row'),
-			carouselItems = document.querySelectorAll('.carousel__item');
+			carouselItems = document.querySelectorAll('.carousel__item')
+			dots = document.querySelectorAll('.carousel__dot');
 		
 let current = 0,
-		step = 250;
+		step = 250
+		dotsIndex = 0;
 
 arrowPrev.addEventListener('click', function() {
 
@@ -15,6 +17,8 @@ arrowPrev.addEventListener('click', function() {
 		current--;
 		carouselRow.style.marginLeft = '-' + step * current + 'px';
 	}
+
+	dotsRefresh();
 
 });
 
@@ -28,4 +32,25 @@ arrowNext.addEventListener('click', function() {
 		current = 0;
 	}
 
+	dotsRefresh();
+
 });
+
+for (let i = 0; i < dots.length; i++) {
+	dots[i].addEventListener('click', function() {
+
+		current = Number(this.innerText);
+
+		carouselRow.style.marginLeft = '-' + step * (current) + 'px';
+
+		dotsRefresh();
+
+	});
+}
+
+const dotsRefresh = function() {
+	for (let i = 0; i < dots.length; i++) {
+		dots[i].classList.remove('carousel__dot_active');
+		dots[current].classList.add('carousel__dot_active');
+	}
+}
