@@ -1,0 +1,38 @@
+*
+	margin: 0
+	padding: 0
+	box-sizing: border-box
+
+.carousel
+	position: absolute
+	top: 5%
+	left: 50%
+	transform: translate(-50%, 0)
+	&__arrow
+		border: 1px solid #000
+		background: #fff
+		padding: 5px
+		cursor: pointer
+		position: absolute
+		top: 50%
+		transform: translateY(-50%)
+		left: 0
+	&__arrow-next
+		left: auto
+		right: 0
+	&__items
+		width: 250px
+		height: 250px
+		overflow: hidden
+	&__row
+		display: flex
+		transition: margin-left .6s ease
+	&__item
+		flex-shrink: 0;
+		width: 250px
+		height: 250px
+		background-color: #fff
+		display: flex
+		align-items: center
+		justify-content: center
+		font-size: 64px
