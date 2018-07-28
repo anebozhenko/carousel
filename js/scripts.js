@@ -3,12 +3,13 @@ const startCarousel = function() {
 	const arrowPrev = document.querySelector('.carousel__arrow-prev'),
 				arrowNext = document.querySelector('.carousel__arrow-next'),
 				carouselRow = document.querySelector('.carousel__row'),
-				carouselItems = document.querySelectorAll('.carousel__item')
-				dots = document.querySelectorAll('.carousel__dot');
+				carouselItems = document.querySelectorAll('.carousel__item'),
+				dotsList = document.querySelector('.carousel__dots');
 			
 	let current = 0,
-			step = 250
-			dotsIndex = 0;
+			step = 250,
+			dots,
+			dotIndex = 0;
 
 	arrowPrev.addEventListener('click', function() {
 
@@ -38,6 +39,22 @@ const startCarousel = function() {
 
 	});
 
+	const createDots = function() {
+
+		const dot = document.createElement('div');
+
+		dot.className = 'carousel__dot';
+		dot.innerText = dotIndex++;
+		dotsList.appendChild(dot);
+
+		dots = document.querySelectorAll('.carousel__dot');
+
+	};
+
+	for (let i = 0; i < carouselItems.length; i++) {
+		createDots();
+	}
+
 	for (let i = 0; i < dots.length; i++) {
 		dots[i].addEventListener('click', function() {
 
@@ -55,7 +72,9 @@ const startCarousel = function() {
 			dots[i].classList.remove('carousel__dot_active');
 			dots[current].classList.add('carousel__dot_active');
 		}
-	}
+	};
+
+	dotsRefresh();
 	
 };
 
