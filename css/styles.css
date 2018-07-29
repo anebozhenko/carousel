@@ -10,16 +10,22 @@
   transform: translate(-50%, 0); }
   .carousel__arrow {
     border: 1px solid #000;
-    background: #fff;
-    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.6);
+    background-image: url("../img/arrow.png");
+    background-size: 150%;
+    background-position: center center;
+    width: 22px;
+    height: 22px;
     cursor: pointer;
+    border-radius: 50%;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: 0; }
+    left: 5px; }
   .carousel__arrow-next {
     left: auto;
-    right: 0; }
+    right: 5px;
+    transform: translateY(-50%) rotate(180deg); }
   .carousel__items {
     width: 250px;
     height: 250px;
