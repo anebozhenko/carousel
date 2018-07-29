@@ -1,9 +1,11 @@
+'use strict';
+
 const startCarousel = function() {
 
-	const arrowPrev = document.querySelector('.carousel__arrow-prev'),
-				arrowNext = document.querySelector('.carousel__arrow-next'),
+	const arrowPrev = document.querySelector('.carousel__arrow-prev'), // Arrows
+				arrowNext = document.querySelector('.carousel__arrow-next'), //
 				carouselRow = document.querySelector('.carousel__row'),
-				carouselItems = document.querySelectorAll('.carousel__item'),
+				carouselItems = document.getElementsByClassName('carousel__item'), // Slides
 				dotsList = document.querySelector('.carousel__dots');
 			
 	let current = 0,
@@ -11,6 +13,26 @@ const startCarousel = function() {
 			dots,
 			dotIndex = 0;
 
+	// Adds colors to slides and gives them a number
+	const slideColor = function() {
+
+		const slideColors = ['#E3E8FF', '#F7FFE3', '#E3FFF5', '#FFD8D8'];
+		let colorIndex = 0;
+
+		for (let i = 0; i < carouselItems.length; i++) {
+			carouselItems[i].innerText = i + 1;
+			if (i >= slideColors.length) {
+				carouselItems[i].style.backgroundColor = slideColors[colorIndex++];
+			} else {
+				carouselItems[i].style.backgroundColor = slideColors[i];
+			}
+		}
+
+	};
+
+	slideColor();
+
+	// Left and Right arrows
 	arrowPrev.addEventListener('click', function() {
 
 		if (current === 0) {
@@ -39,6 +61,7 @@ const startCarousel = function() {
 
 	});
 
+	// Creates dots depending on the amount of slides
 	const createDots = function() {
 
 		const dot = document.createElement('div');
@@ -47,7 +70,7 @@ const startCarousel = function() {
 		dot.innerText = dotIndex++;
 		dotsList.appendChild(dot);
 
-		dots = document.querySelectorAll('.carousel__dot');
+		dots = document.getElementsByClassName('carousel__dot');
 
 	};
 
@@ -55,6 +78,7 @@ const startCarousel = function() {
 		createDots();
 	}
 
+	// Adds eventlisteners to dots
 	for (let i = 0; i < dots.length; i++) {
 		dots[i].addEventListener('click', function() {
 
@@ -67,6 +91,7 @@ const startCarousel = function() {
 		});
 	}
 
+	// Updates styles of dots each time slides change
 	const dotsRefresh = function() {
 		for (let i = 0; i < dots.length; i++) {
 			dots[i].classList.remove('carousel__dot_active');
