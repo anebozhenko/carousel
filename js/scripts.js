@@ -23,13 +23,17 @@ const startCarousel = function() {
 
 		for (let i = 0; i < carouselItems.length; i++) {
 			carouselItems[i].innerText = i + 1;
-			if (i >= slideColors.length) {
-				carouselItems[i].style.backgroundColor = slideColors[colorIndex++];
-			} else {
+			if (i <= slideColors.length - 1) {
 				carouselItems[i].style.backgroundColor = slideColors[i];
+			} else {
+				if (colorIndex > slideColors.length - 1) {
+					colorIndex = 0;
+					carouselItems[i].style.backgroundColor = slideColors[colorIndex++];
+				} else {
+					carouselItems[i].style.backgroundColor = slideColors[colorIndex++];
+				}
 			}
 		}
-
 	};
 
 	slideColor();
