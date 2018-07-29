@@ -4,10 +4,13 @@
 	box-sizing: border-box
 
 .carousel
+	border: 1px solid #000
 	position: absolute
 	top: 5%
 	left: 50%
 	transform: translate(-50%, 0)
+	width: 50%
+	height: 50%
 	&__arrow
 		border: 1px solid #000
 		background-color: rgba(#fff, .6)
@@ -27,16 +30,17 @@
 		right: 5px
 		transform: translateY(-50%) rotate(180deg)
 	&__items
-		width: 250px
-		height: 250px
+		height: 100%
 		overflow: hidden
+		background-color: blue
 	&__row
+		height: 100%
+		width: 100%
 		display: flex
 		transition: margin-left .6s ease
 	&__item
 		flex-shrink: 0;
-		width: 250px
-		height: 250px
+		width: 100%
 		background-color: #fff
 		display: flex
 		align-items: center

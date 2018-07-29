@@ -9,9 +9,11 @@ const startCarousel = function() {
 				dotsList = document.querySelector('.carousel__dots');
 			
 	let current = 0,
-			step = 250,
+			step = 100,
 			dots,
 			dotIndex = 0;
+
+	console.log(step);
 
 	// Adds colors to slides and gives them a number
 	const slideColor = function() {
@@ -36,11 +38,11 @@ const startCarousel = function() {
 	arrowPrev.addEventListener('click', function() {
 
 		if (current === 0) {
-			carouselRow.style.marginLeft = '-' + step * (carouselItems.length - 1) + 'px';
+			carouselRow.style.marginLeft = '-' + step * (carouselItems.length - 1) + '%';
 			current = carouselItems.length - 1;
 		} else {
 			current--;
-			carouselRow.style.marginLeft = '-' + step * current + 'px';
+			carouselRow.style.marginLeft = '-' + step * (current) + '%';
 		}
 
 		dotsRefresh();
@@ -50,7 +52,7 @@ const startCarousel = function() {
 	arrowNext.addEventListener('click', function() {
 
 		if (current < carouselItems.length - 1) {
-			carouselRow.style.marginLeft = '-' + step * (current + 1) + 'px';
+			carouselRow.style.marginLeft = '-' + step * (current + 1) + '%';
 			current++;
 		} else {
 			carouselRow.style.marginLeft = 0;
@@ -84,7 +86,7 @@ const startCarousel = function() {
 
 			current = Number(this.innerText);
 
-			carouselRow.style.marginLeft = '-' + step * (current) + 'px';
+			carouselRow.style.marginLeft = '-' + step * (current) + '%';
 
 			dotsRefresh();
 

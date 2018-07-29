@@ -4,10 +4,13 @@
   box-sizing: border-box; }
 
 .carousel {
+  border: 1px solid #000;
   position: absolute;
   top: 5%;
   left: 50%;
-  transform: translate(-50%, 0); }
+  transform: translate(-50%, 0);
+  width: 50%;
+  height: 50%; }
   .carousel__arrow {
     border: 1px solid #000;
     background-color: rgba(255, 255, 255, 0.6);
@@ -27,16 +30,17 @@
     right: 5px;
     transform: translateY(-50%) rotate(180deg); }
   .carousel__items {
-    width: 250px;
-    height: 250px;
-    overflow: hidden; }
+    height: 100%;
+    overflow: hidden;
+    background-color: blue; }
   .carousel__row {
+    height: 100%;
+    width: 100%;
     display: flex;
     transition: margin-left .6s ease; }
   .carousel__item {
     flex-shrink: 0;
-    width: 250px;
-    height: 250px;
+    width: 100%;
     background-color: #fff;
     display: flex;
     align-items: center;
