@@ -3,17 +3,17 @@
 const startCarousel = function() {
 
 	const arrowPrev = document.querySelector('.carousel__arrow-prev'), // Arrows
-				arrowNext = document.querySelector('.carousel__arrow-next'), //
+				arrowNext = document.querySelector('.carousel__arrow-next'), // // Slides
+				carouselItems = document.getElementsByClassName('carousel__item'),
 				carouselRow = document.querySelector('.carousel__row'),
-				carouselItems = document.getElementsByClassName('carousel__item'), // Slides
-				dotsList = document.querySelector('.carousel__dots');
+				buttonAdd = document.querySelector('.carousel__add'),
+				buttonRemove = document.querySelector('.carousel__remove');
 			
-	let current = 0,
+	let dotsList = document.querySelector('.carousel__dots'),
+			current = 0,
 			step = 100,
 			dots,
 			dotIndex = 0;
-
-	console.log(step);
 
 	// Adds colors to slides and gives them a number
 	const slideColor = function() {
@@ -33,6 +33,45 @@ const startCarousel = function() {
 	};
 
 	slideColor();
+
+	// Adds a slide
+	buttonAdd.addEventListener('click', function() {
+
+		const slide = document.createElement('div');
+		dotsList = document.querySelector('.carousel__dots');
+
+		slide.className = 'carousel__item';
+
+		carouselRow.appendChild(slide);
+
+		const dot = document.createElement('div');
+
+		dot.className = 'carousel__dot';
+		dot.innerText = dotIndex++;
+		dotsList.appendChild(dot);
+
+		slideColor();
+
+		dotsRefresh();
+
+	});
+
+	// Removes the last slide
+	buttonRemove.addEventListener('click', function() {
+
+		if (carouselItems.length > 2) {
+			carouselItems[carouselItems.length - 1].remove();
+			dots[dots.length - 1].remove();
+		}
+
+		if (current == dots.length) {
+			carouselRow.style.marginLeft = 0;
+			current = 0;
+		}
+
+		dotsRefresh();
+
+	});
 
 	// Left and Right arrows
 	arrowPrev.addEventListener('click', function() {
@@ -80,25 +119,25 @@ const startCarousel = function() {
 		createDots();
 	}
 
-	// Adds eventlisteners to dots
-	for (let i = 0; i < dots.length; i++) {
-		dots[i].addEventListener('click', function() {
-
-			current = Number(this.innerText);
-
-			carouselRow.style.marginLeft = '-' + step * (current) + '%';
-
-			dotsRefresh();
-
-		});
-	}
-
 	// Updates styles of dots each time slides change
 	const dotsRefresh = function() {
+
+		// Adds eventlisteners to dots
+		for (let i = 0; i < dots.length; i++) {
+			dots[i].addEventListener('click', function() {
+
+				current = Number(this.innerText);
+				carouselRow.style.marginLeft = '-' + step * (current) + '%';
+				dotsRefresh();
+
+			});
+		}
+
 		for (let i = 0; i < dots.length; i++) {
 			dots[i].classList.remove('carousel__dot_active');
 			dots[current].classList.add('carousel__dot_active');
 		}
+
 	};
 
 	dotsRefresh();
